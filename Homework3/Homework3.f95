@@ -26,19 +26,21 @@ program Homework3
     !Loop for Average and Q calculations
     do i = 1, size 
         read(42,*) hw3_data(i) !read in data value
-        u = u_previous + ((hw3_data(i) - u_previous) / float(i)) !update average
+        u = u_previous + (hw3_data(i) - u_previous) / float(i) !update average
         q = q + (hw3_data(i) - u_previous)*(hw3_data(i) - u) !update q
     end do
 
     !Sqrt at end of computation for efficiency
     standard_deviation = sqrt(q/float(size))
 
-    !Print the average to the screen (with a label) + done statement.
-    print*, "Update Average: ", u, "Standard Deviation: ", standard_deviation
-    print*, "Done!"
-    
+    !Print average and standard deviation to the screen (with a label)
+    print*, "Average: ", u, "Standard Deviation: ", standard_deviation
+
     !clean-up
     deallocate(hw3_data)
     close(42)
+
+    !Done statement
+    print*, "Done!"
 
 end program Homework3
