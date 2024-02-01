@@ -4,7 +4,8 @@ program Homework3
     ! Homework 3
     ! 02/08/2024
     
-    !This program reads in data from a file to both set an array size and to calculate the average of the data within
+    ! This program reads in data from a file to both set an array size and to calculate the average 
+    ! and standard deviation of the data within
 
     implicit none
     !declare variables here
