@@ -29,6 +29,7 @@ program Homework3
         read(42,*) hw3_data(i) !read in data value
         u = u_previous + (hw3_data(i) - u_previous) / float(i) !update average
         q = q + (hw3_data(i) - u_previous)*(hw3_data(i) - u) !update q
+        u_previous = u !set u_previous to new u for next loop
     end do
 
     !Sqrt at end of computation for efficiency
