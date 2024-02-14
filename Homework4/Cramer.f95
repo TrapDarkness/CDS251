@@ -43,7 +43,6 @@ program CramersRule
 
       if (Success) then
          ! Write solution to file
-         print*, "Success, writing sol"
          do row = 1, n
             write(43,*) x(row)
          enddo
@@ -79,7 +78,6 @@ subroutine Cramer(M, b, n, x, Success)
    ! If it is zero, set the Success logical variable and quit.
     Success = .true.
     if (Determinant(M,n) == 0) then
-        print*, "Det = 0, flagging false"
         Success = .false. 
         return
         
@@ -91,10 +89,8 @@ subroutine Cramer(M, b, n, x, Success)
 
     do i = 1, n
         call ColumnInsert(M, b, n, i, MatOut)
-        !print*, MatOut
         Mi = MatOut
-       ! print*, Determinant(working_matrix, n)
-       x(i) = Determinant(Mi,n) / Determinant(M,n)
+        x(i) = Determinant(Mi,n) / Determinant(M,n)
     end do
 
    ! deallocate memory for the working matrix.
@@ -113,7 +109,6 @@ subroutine ColumnInsert(M, b, n, col, MatOut)
    ! Don't forget to set MatOut = M before you substitute the column in.
     MatOut = M
     MatOut(1:n,col) = b
-    print*, "Matrix testing", M, "b ", b, "col ", col,"Changed matrix", MatOut
 
 end subroutine ColumnInsert
 
