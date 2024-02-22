@@ -3,14 +3,11 @@ program HW5
     implicit none
    
     ! Declare variables
-    integer :: n, i, j
+    integer :: n, i, j, Temp
     integer, allocatable :: index(:)
     real*4, allocatable :: A(:)
-    real*4 :: Temp, start_time, end_time
     logical :: Done
     character*50 :: filename
-
-    call cpu_time(start_time)
    
     !Request filename
     print*, "Please input filename"
@@ -63,10 +60,5 @@ program HW5
     
     !Done
     print*, "Done!"
-    
-    call cpu_time(end_time)
-    
-    write(*, '(A, F8.6)') 'Elapsed time, s : ',  (end_time - start_time)
-
 
 end program HW5
