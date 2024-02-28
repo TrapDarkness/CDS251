@@ -9,13 +9,11 @@ program HW6
    
     !Request filename
     print*, "Please input filename"
-    ! read(*,*) filename
+    read(*,*) filename
    
     ! Open the input and output files.
-    ! open(42,file=filename)
-    open(42,file='Numbers3.txt')
+    open(42,file=filename)
     open(43,file='Output.txt')
-    open(44,file='Debug.txt')
     read(42,*)
     read(42,*) n
     
@@ -78,26 +76,17 @@ function Partition(A, n, lo, hi) result(P)
 
     !Swap values in Partition
     do i = lo, hi - 1
-        write(44,*) "Outside:", i
         if (A(i) .le. Pivot) then
-            print*, P
-            print*, lo
-            print*, hi
-            ! write(44,*) "Inside", i
             Temp = A(P)
-            print*, "less than Before, Temp: ", Temp, " A(P): ", A(P), " A(i): ", A(i)
             A(P) = A(i)
             A(i) = Temp
             P = P + 1
-            print*, "less than After, Temp: ", Temp, " A(P): ", A(P), " A(i): ", A(i)
         endif
     enddo
     
     !Swap high and P 
     Temp = A(P)
-    ! print*, "Hi Before, Temp: ", Temp, " A(P): ", A(P), " A(hi): ", A(hi)
     A(P) = A(hi)
-    A(P) = Temp
-    ! print*, "Hi After, Temp: ", Temp, " A(P): ", A(P), " A(hi): ", A(hi)
-    
+    A(hi) = Temp
+
 end function Partition
