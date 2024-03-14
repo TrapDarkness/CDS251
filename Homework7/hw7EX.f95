@@ -1,5 +1,12 @@
 program hw7EX
 
+    ! Alexander Shumway
+    ! CDS251
+    ! Homework7 Extra Credit
+    ! 03/14/2024
+    
+    ! This program uses running computations to take the line of best fit to data, quadratically!.  
+
     implicit none
 
     ! Declare variables
@@ -45,5 +52,8 @@ program hw7EX
     print*, "x^2 coefficent a = ", a 
     print*, "x coefficent b = ", b
     print*, "Constant c = ", c
+
+    !clean-up
+    close(42)
 
 end program hw7EX

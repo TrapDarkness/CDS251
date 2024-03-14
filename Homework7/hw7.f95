@@ -1,5 +1,12 @@
 program hw7
 
+    ! Alexander Shumway
+    ! CDS251
+    ! Homework7
+    ! 03/14/2024
+    
+    ! This program uses running computations to take the line of best fit to data, exponentially!  
+
     implicit none
 
     ! Declare variables
@@ -35,5 +42,8 @@ program hw7
 
     print*, "Exponent a = ", a 
     print*, "Coefficent b = ", b
+
+    !clean-up
+    close(42)
 
 end program hw7
