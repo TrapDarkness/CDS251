@@ -9,81 +9,36 @@ program hw9
     implicit none
 
     !declare variables here
-    integer :: Count
-    real*8 :: a, b, m, Tolerance, MyFunc, MyFuncDer, x1, x2, x3
+    integer :: i, n
+    real*4 :: a, b, h, area, simpson_area, MyFunc, MyFuncIntegral, midpoint_height, left_height, right_height, exact
    
-    ! Prompt and input the starting x values.
-    print*, "Enter the first x value"
-    read*, a
-    print*, "Enter the second x value"
-    read*, b
+    !Ask for input Variables
+    print*, 'What is the 1st limit of integration?'
+    read(*,*) a
+    print*, 'What is the 2nd limit of integration?'
+    read(*,*) b
+    print*, 'What increment do you want?'
+    read(*,*) h
 
-    ! Quit if 2 x-values do not produce opposite signs in f(x)
-    if (MyFunc(a) * MyFunc(b) .ge. 0.0) then
-        print*, "x-values do not produce opposite signs! quitting."
-        stop   
-    endif
+    !Initialize other variables
+    area = 0.0
+    simpson_area = 0.0
+    n = int((b - a) / h)
+    exact = MyFuncIntegral(b) - MyFuncIntegral(a)
 
-    !Bisection Method
-    !Loop Control Variables
-    Count = 0
-    Tolerance = 1.0d-14
-
-    !bisection loop
-    do
-        Count = Count + 1
-        m = (a + b) / 2.0 ! Computes x midpoint
-        if (abs(MyFunc(m)) .lt. Tolerance) exit
-        if (Count .gt. 1000) exit
-        if (sign(1.0d0,MyFunc(a)) .eq. sign(1.0d0,MyFunc(m))) then
-            a = m
-        else
-            b = m
-        endif
+    do i = 1, n
+        left_height = MyFunc(a + float(i - 1) * h)
+        right_height = MyFunc(a + float(i) * h)
+        midpoint_height = MyFunc(a + float(i - 1) * h + 0.5 * h)
+        area = area + h * midpoint_height
+        simpson_area = simpson_area + ((h / 6) * ((left_height) + 4*(midpoint_height) + (right_height)))
     enddo
         
-    print*, "Bisection Method:"
-    print*, "root: ", m, " f(m): ", MyFunc(m), " Count: ", Count !Print results
-
-    !Newton's Method
-
-    !Loop Control Variables
-    Count = 0
-    Tolerance = 1.0d-14
-
-    !Newton's loop
-    x1 = a
-    do
-        Count = Count + 1
-        if (abs(MyFunc(x1)) .lt. Tolerance) exit
-        if (Count .gt. 50) exit
-        x1 = x1 - MyFunc(x1)/MyFuncDer(x1)
-    enddo
-        
-    print*, "Newton's Method:"
-    print*, "root: ", x1, " f(x): ", MyFunc(x1), " Count: ", Count !Print decoded message to string
-
-    !Newton's Method
-
-    !Loop Control Variables
-    Count = 0
-
-    !Secant's loop
-    x1 = a
-    x2 = b
-    do
-        Count = Count + 1
-        if (abs(MyFunc(x1)) .lt. Tolerance) exit
-        if (Count .gt. 50) exit
-        x3 = x2 - MyFunc(x2)* ((x2 - x1)/(MyFunc(x2) - MyFunc(x1)))
-
-        x1 = x2
-        x2 = x3
-    enddo
-        
-    print*, "Secant's Method:"
-    print*, "root: ", x3, " f(x): ", MyFunc(x3), " Count: ", Count !Print decoded message to string
-
+    print*, "Midpoint Rule:"
+    print*, "Exact: ", exact, " h: ", h, " Computed Area: ", area
+    print*, " Absolute Error", abs(exact - area), " Relative Error", exact - area  !Print results
+    print*, "Simpson's Rule:"
+    print*, " Computed Area: ", simpson_area, " Absolute Error", abs(exact - simpson_area), " Relative Error", exact - simpson_area  !Print results
 
     !clean-up
 
@@ -93,18 +48,18 @@ function MyFunc(x) result(fx)
 
    implicit none
 
-   real*8 :: x, fx
+   real*4 :: x, fx
 
-    fx = sin(x) + 1.5 -0.15*x
+    fx = exp(-1*x) * (sin(x))**2
       
 end function MyFunc
 
-function MyFuncDer(x) result(derfx)
+function MyFuncIntegral(x) result(intfx)
 
     implicit none
  
-    real*8 :: x, derfx
+    real*4 :: x, intfx
  
-    derfx = cos(x) - 0.15
+    intfx = (exp(-1*x) / 10) *  (cos(2*x) - 2*sin(2*x) - 5)
        
- end function MyFuncDer
+ end function MyFuncIntegral
