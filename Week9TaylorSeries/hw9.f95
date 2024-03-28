@@ -26,6 +26,7 @@ program hw9
     n = int((b - a) / h)
     exact = MyFuncIntegral(b) - MyFuncIntegral(a)
 
+    !Riemann Approximation loop with midpoint and simpson's rule
     do i = 1, n
         left_height = MyFunc(a + float(i - 1) * h)
         right_height = MyFunc(a + float(i) * h)
@@ -33,7 +34,8 @@ program hw9
         area = area + h * midpoint_height
         simpson_area = simpson_area + ((h / 6) * ((left_height) + 4*(midpoint_height) + (right_height)))
     enddo
-        
+
+    !Print results    
     print*, "Midpoint Rule:"
     print*, "Exact: ", exact, " h: ", h, " Computed Area: ", area
     print*, " Absolute Error", abs(exact - area), " Relative Error", exact - area  !Print results
