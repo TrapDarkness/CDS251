@@ -11,7 +11,7 @@ program hw10p2
     !declare variables here
     integer :: i, HistStart, HistEnd, BadCount, nBoxes
     integer, allocatable :: Hist(:)
-    real*8 :: BoxWidth, iHist, Num, HistRange
+    real*8 :: BoxWidth, iHist, Num, HistRange, x
     
     !initialize files
     open(42,file='Bumps.txt')
@@ -48,6 +48,6 @@ program hw10p2
     close(42)
     close(43)
     close(44)
-    deallocate(nBoxes)
+    deallocate(Hist)
 
 end program hw10p2
