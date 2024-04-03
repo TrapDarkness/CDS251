@@ -2,7 +2,7 @@ program hw10p2
     ! Alexander Shumway
     ! CDS251
     ! HW10Program2
-    ! 03/28/2024
+    ! 04/03/2024
     
     ! Generate Histogram
 
@@ -38,16 +38,14 @@ program hw10p2
     enddo
    
    !Create plot
-    open(44, file = 'Histogram.txt')
     do i = 1, nBoxes
         x = (float(i) - 0.5) * BoxWidth + HistStart
-        write(42,*) x, Hist(i)
+        write(43,*) x, Hist(i)
     enddo
    
     !clean-up
     close(42)
     close(43)
-    close(44)
     deallocate(Hist)
 
 end program hw10p2
