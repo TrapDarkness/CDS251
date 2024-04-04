@@ -4,13 +4,13 @@ program hw10
     ! HW10Program1
     ! 03/28/2024
     
-    ! Generate Gaussion numbers 
+    ! Generate Gaussian numbers 
 
     implicit none
 
     !declare variables here
     integer :: i, n, seed
-    real*8 :: rnum1, BoxMuller, StDev, Mean
+    real*8 :: BoxMuller, StDev, Mean
     
     !initialize files
     open(43,file='Bumps.txt')

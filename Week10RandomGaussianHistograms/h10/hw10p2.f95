@@ -9,9 +9,9 @@ program hw10p2
     implicit none
 
     !declare variables here
-    integer :: i, HistStart, HistEnd, BadCount, nBoxes
+    integer :: i, HistStart, HistEnd, BadCount, nBoxes, iHist
     integer, allocatable :: Hist(:)
-    real*8 :: BoxWidth, iHist, Num, HistRange, x
+    real*8 :: BoxWidth, Num, HistRange, x
     
     !initialize files
     open(42,file='Bumps.txt')

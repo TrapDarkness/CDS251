@@ -1,7 +1,7 @@
 program hw10EX
     ! Alexander Shumway
     ! CDS251
-    ! HW10Program1
+    ! HW10pEX
     ! 04/03/2024
     
     ! Brownian Walk Simulation 
