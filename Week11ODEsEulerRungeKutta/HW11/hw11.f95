@@ -1,8 +1,8 @@
-program lab11
+program hw11
     ! Alexander Shumway
     ! CDS251
-    ! HW10Program1
-    ! 03/28/2024
+    ! HW11
+    ! 04/10/2024
     
     ! Write program for Runge kutta’s Method
 
@@ -51,7 +51,7 @@ program lab11
     !clean-up
     close(42)
 
-end program lab11
+end program hw11
 
 function MyFuncODE(y, t) result(fyt)
 
