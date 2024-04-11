@@ -175,6 +175,6 @@ GNUTERM = "qt"
 I = {0.0, 1.0}
 VoxelDistance = 0.0
 x = 0.0
-## Last datafile plotted: "RungeKutta10.txt"
-plot "RungeKutta00.txt" title "y(0)=0.0" with line, "RungeKutta04.txt" title "y(0)=0.4" with line, "RungeKutta08.txt" title "y(0)=0.8" with line, "RungeKutta12.txt" title "y(0)=1.2" with line, "RungeKutta16.txt" title "y(0)=1.6" with line, "RungeKutta20.txt" title "y(0)=2.0" with line, "RungeKutta10.txt" title "y(0) = 1.0" with line
+## Last datafile plotted: "BackwardsEulers20.txt"
+plot "BackwardsEulers00.txt" title "y(0) = 0.0" with line, "BackwardsEulers04.txt" title "y(0) = 0.4" with line, "BackwardsEulers08.txt" title "y(0) = 0.8" with line, "BackwardsEulers10.txt" title "y(0) = 1.0" with line, "BackwardsEulers12.txt" title "y(0) = 1.2" with line, "BackwardsEulers16.txt" title "y(0) = 1.6" with line, "BackwardsEulers20.txt" title "y(0) = 2.0" with line
 #    EOF

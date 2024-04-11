@@ -43,7 +43,7 @@ program HW11EX
         y2 = y
         do
             y2Old = y2
-            y2 = y + h * MyFuncODE(t+h, y2)
+            y2 = y + h * MyFuncODE(y2, t+h)
             if (abs(y2 - y2Old) .lt. Tol) exit ! stop once there's no longer a change between the old and new y2 value
         enddo
         t = t + h
