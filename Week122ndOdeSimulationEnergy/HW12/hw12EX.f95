@@ -10,7 +10,7 @@ program HW12
 
     !declare variables here
     integer :: i, j, n
-    real*8:: tFinal, h, t, PE, KE, planetState(4), fP(4), k1(4), k2(4), k3(3), k4(4)
+    real*8:: tFinal, h, t, PE, KE, planetState(4), k1(4), k2(4), k3(4), k4(4)
     character*50 :: filename
    
     !Ask for input Variables
@@ -44,24 +44,16 @@ program HW12
 
     !Run Runge Kutta Method loop
     do i = 1, n
-        call fPrime(planetState, fP)
+        call fPrime(planetState, k1)
+        call fPrime(planetState+h/2.0*k1, k2)
+        call fPrime(planetState+h/2.0*k2, k3)
+        call fPrime(planetState+h*k3, k4)
+
         do j = 1, 4
-            k1(j) = fp(j)
-            planetState(j) = planetState(j) + (h/6) * fP(j)
+            planetState(j) = planetState(j) + (h/6) * (k1(j) + 2.d0*k2(j) + 2.d0*k3(j) + k4(j))
         enddo
         t = t + h
         write(42, *) planetState(1), planetState(3), PE(planetState), KE(planetState), PE(planetState) + KE(planetState), t
-    enddo
-
-    !Run Runge Kutta Method loop
-    do i = 1, n
-        k1 = MyFuncODE(y,t)
-        k2 = MyFuncODE(y+h/2*k1,t+h/2)
-        k3 = MyFuncODE(y+h/2*k2,t+h/2)
-        k4 = MyFuncODE(y+h*k3,t+h)
-        y = y + (h/6) * (k1 + 2*k2 + 2*k3 + k4)
-        t = t + h
-        write(42, *) t, y
     enddo
     
     !Write Final State
